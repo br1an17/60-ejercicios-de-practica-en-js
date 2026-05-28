@@ -14,19 +14,18 @@ const ventas = [
   { producto: "Monitor", precio: 300, cantidad: 1 },
 ];
 
-const totalVentas = (array) => {
+const calcularTotalVentas = (ventas) => {
   let valorVentasTotal = 0;
-  let valorVentaProducto = 0;
-  array.forEach((e) => {
+ 
+  ventas.forEach((e) => {
     if (e.cantidad > 2) {
-        valorVentaProducto = e.cantidad * e.precio
-       valorVentasTotal += valorVentaProducto
+       valorVentasTotal += e.cantidad * e.precio
     }
   })
   return valorVentasTotal;
 };
 
 
-console.log(totalVentas(ventas))
+console.log(calcularTotalVentas(ventas))
 // Resultado esperado:
 // 250
