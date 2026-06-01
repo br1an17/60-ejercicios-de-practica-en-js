@@ -1,51 +1,53 @@
-// Crear una función llamada obtenerConductorEstrella que reciba un array de viajes.
-//  La función debe devolver únicamente el nombre del conductor
-//  que más dinero acumuló en propinas con sus viajes completados.
+// Crear una función llamada obtenerSucursalMasEficiente
+// Recibe un array de ventas.
+// Cada venta tiene:
+// - sucursal
+// - monto
+// - completada
+// Debes considerar SOLAMENTE las ventas completadas.
+// La sucursal más eficiente será aquella que tenga:
+// montoTotalFacturado / cantidadVentas
+// más alto.
+// La función debe devolver únicamente el nombre
+// de la sucursal ganadora.
 
-// >> REGLA DE ORO: Respetá el nombre exacto de la función y usá variables descriptivas.
-function obtenerConductorEstrella(viajes) {
-  let mejorConductor = {};
-
-  viajes.forEach((viaje) => {
-    // if (viaje.estado ==="completado") {
-    //     mejorConductor[viaje.conductor] =
-    //     (mejorConductor[viaje.conductor] || 0 ) + viaje.propina
-    // }
-    if (viaje.estado === "completado") {
-      if (mejorConductor[viaje.conductor]) {
-        mejorConductor[viaje.conductor] =
-          mejorConductor[viaje.conductor] + viaje.propina;
+let obtenerSucursalMasEficiente = (ventas) => {
+  let sucursales = {};
+  ventas.forEach((venta) => {
+    if (venta.completada) {
+      if (!sucursales[venta.sucursal]) {
+        sucursales[venta.sucursal] = { total: venta.monto, cantidad: 1 };
       } else {
-        mejorConductor[viaje.conductor] = viaje.propina;
+        sucursales[venta.sucursal].total =
+          sucursales[venta.sucursal].total + venta.monto;
+        sucursales[venta.sucursal].cantidad =
+          sucursales[venta.sucursal].cantidad + 1;
       }
     }
   });
 
-  let valorMaximo = 0;
-  let conductorGanador = "";
+  let valorFinal = 0;
+  let sucursalGanadora = "";
+  for (const sucursal in sucursales) {
+    const valor = sucursales[sucursal].total;
+    const cantidad = sucursales[sucursal].cantidad;
+    const valorMaximo = valor / cantidad;
 
-  for (const conductor in mejorConductor) {
-    let mayorGanancia = mejorConductor[conductor];
-    if (mayorGanancia > valorMaximo) {
-      valorMaximo = mayorGanancia;
-      conductorGanador = conductor
+    if (valorMaximo > valorFinal) {
+      valorFinal = valorMaximo;
+      sucursalGanadora = sucursal;
     }
   }
-  return conductorGanador
-}
+  return sucursalGanadora;
+};
 
-// --- DATOS DE PRUEBA ---
-const historialViajes = [
-  { conductor: "Carlos", propina: 500, estado: "completado" },
-  { conductor: "Brian", propina: 800, estado: "completado" },
-  { conductor: "Carlos", propina: 400, estado: "completado" }, // Carlos lleva 500 + 400 = 900
-  { conductor: "Gabriela", propina: 1200, estado: "cancelado" }, // No cuenta por estar cancelado
-  { conductor: "Brian", propina: 200, estado: "completado" }, // Brian lleva 800 + 200 = 1000
-  { conductor: "Gabriela", propina: 600, estado: "completado" }, // Gabriela solo suma 600
+const ventas = [
+  { sucursal: "Palermo", monto: 1000, completada: true },
+  { sucursal: "Belgrano", monto: 500, completada: true },
+  { sucursal: "Palermo", monto: 500, completada: true },
+  { sucursal: "Caballito", monto: 1200, completada: true },
+  { sucursal: "Belgrano", monto: 1500, completada: true },
+  { sucursal: "Caballito", monto: 800, completada: false },
 ];
 
-console.log(obtenerConductorEstrella(historialViajes));
-/* RESULTADO ESPERADO:
-"Brian" 
-(Porque Brian sumó $1000 en total, ganándole a Carlos que sumó $900 y a Gabriela con $600)
-*/
+console.log(obtenerSucursalMasEficiente(ventas));
