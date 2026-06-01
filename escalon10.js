@@ -44,6 +44,7 @@ const reservas = [
   { pasajero: "Sofía", destino: "París", precio: 900, confirmada: true },
   { pasajero: "Carlos", destino: "Roma", precio: 400, confirmada: false },
   { pasajero: "Juan", destino: "París", precio: 300, confirmada: true },
+  { pasajero: "Brian", destino: "Roma", precio: 1200, confirmada: true },
 ];
 
 console.log(obtenerDestinoMasRentable(reservas));
