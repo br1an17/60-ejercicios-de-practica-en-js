@@ -8,23 +8,20 @@
 import Hotel from "./escalon1POO.js";
 
 class HotelVip extends Hotel {
-    constructor(nombre, precioPorNoche, servicioDeLimpieza) {
-        super(nombre,precioPorNoche)
-        this.servicioDeLimpieza = servicioDeLimpieza
+  constructor(nombre, precioPorNoche, servicioDeLimpieza) {
+    super(nombre, precioPorNoche);
+    this.servicioDeLimpieza = servicioDeLimpieza;
+  }
+  mostrarServicio() {
+    if (this.servicioDeLimpieza) {
+      return "Tiene limpieza incluida";
+    } else {
+      return "No tiene limpieza incluida";
     }
-   mostrarServicio(){
-if(this.servicioDeLimpieza){
-return "Tiene limpieza incluida"
-}else{
-
-    return "No tiene limpieza incluida"
+  }
 }
 
-   }
-}
+let hotelVip = new HotelVip("pepe", 500, true);
 
-
-let hotelVip = new HotelVip("pepe",500,true);
-
-console.log(hotelVip)
+console.log(hotelVip);
 export default HotelVip;
