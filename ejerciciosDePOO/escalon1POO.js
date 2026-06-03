@@ -19,3 +19,4 @@ const miHotel = new Hotel("Hotel Mar del Plata", 5000);
 
 console.log(miHotel.nombre);
 console.log(miHotel.calcularEstadia(3));
+export default Hotel;
