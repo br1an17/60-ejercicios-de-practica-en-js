@@ -68,7 +68,7 @@ class Aerolinea {
 return vuelosOfertaTemporada.map(vuelo => {
     return {
         destino: vuelo.destino,
-        precioConDescuento: vuelo.precio * 0.8 // 20% de descuento
+        precioConDescuento: vuelo.precio * 0.8 
     };
 });
   }
