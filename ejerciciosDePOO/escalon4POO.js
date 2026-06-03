@@ -32,9 +32,10 @@ class Agencia {
     );
   }
 
-  obtenerHotelesBaratos() {
+  obtenerValorTotalDeHotelesBaratos() {
     let hotelesBaratos = this.lista
       .filter((hotel) => hotel.precio < 5000)
+      .reduce((acumulador, hotel) => acumulador + hotel.precio,0);
     return hotelesBaratos;
   }
 }
@@ -47,5 +48,5 @@ miAgencia.agregar(new Hotel("Sheraton Salta", 7000)); // Debería quedar afuera
 miAgencia.agregar(new Hotel("Hotel Centro", 1500)); // Debería entrar en el filtro
 
 console.log("--- Verificación del Filtro ---");
-console.log(miAgencia.obtenerHotelesBaratos());
+console.log(miAgencia.obtenerValorTotalDeHotelesBaratos());
 // Debería mostrar un array con DOS hoteles: Ibis Mendoza y Hotel Centro
